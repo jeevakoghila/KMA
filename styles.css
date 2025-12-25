@@ -15,14 +15,6 @@ body {
   --color-cream: #F5E6D3;
 }
 
-/* Dark theme variables (applied via `body.dark-theme`) */
-body.dark-theme {
-  --color-maroon: #E6B8C2;
-  --color-ivory: #0B0B0C;
-  --color-gold: #C9A962;
-  --color-brown: #EDE7E3;
-  --color-cream: #1A1A1A;
-}
 
 * {
   scroll-behavior: smooth;
