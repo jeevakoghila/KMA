@@ -287,46 +287,6 @@ function mapToEditPanelValues(config) {
   ]);
 }
 
-// Theme handling: light / dark
-function applyTheme(theme) {
-  const isDark = theme === 'dark';
-  document.body.classList.toggle('dark-theme', isDark);
-  if (isDark) {
-    document.body.style.backgroundColor = getComputedStyle(document.documentElement).getPropertyValue('--color-ivory').trim();
-    document.body.style.color = getComputedStyle(document.documentElement).getPropertyValue('--color-brown').trim();
-  } else {
-    document.body.style.backgroundColor = '';
-    document.body.style.color = '';
-  }
-  const icon = document.getElementById('theme-toggle-icon');
-  if (icon) {
-    icon.innerHTML = isDark
-      ? '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />'
-      : '<path d="M12 3v2M12 19v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 7a5 5 0 100 10 5 5 0 000-10z" />';
-  }
-  try { localStorage.setItem('site-theme', theme); } catch (e) {}
-}
-
-function initTheme() {
-  const saved = (() => { try { return localStorage.getItem('site-theme'); } catch (e) { return null; } })();
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const theme = saved || (prefersDark ? 'dark' : 'light');
-  applyTheme(theme);
-  if (window.matchMedia) {
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      const savedNow = localStorage.getItem('site-theme');
-      if (!savedNow) applyTheme(e.matches ? 'dark' : 'light');
-    });
-  }
-  const btn = document.getElementById('theme-toggle');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      const now = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
-      applyTheme(now === 'dark' ? 'light' : 'dark');
-    });
-  }
-}
-
 // Initialize everything
 function init() {
   window.addEventListener('scroll', handleScroll);
