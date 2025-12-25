@@ -1,0 +1,364 @@
+/* Extra    ted styles from index.html */
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-maroon: #6B1D3A;
+  --color-ivory: #FDF8F3;
+  --color-gold: #C9A962;
+  --color-brown: #4A3728;
+  --color-cream: #F5E6D3;
+}
+
+/* Dark theme variables (applied via `body.dark-theme`) */
+body.dark-theme {
+  --color-maroon: #E6B8C2;
+  --color-ivory: #0B0B0C;
+  --color-gold: #C9A962;
+  --color-brown: #EDE7E3;
+  --color-cream: #1A1A1A;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.font-serif-display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans-body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Logo Animation */
+@keyframes logoReveal {
+  0% { opacity: 0; transform: scale(0.8) rotate(-10deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+.logo-animate {
+  animation: logoReveal 1s ease-out forwards;
+}
+
+/* Hero Text Animation */
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hero-animate {
+  opacity: 0;
+  animation: fadeSlideUp 1s ease-out forwards;
+}
+
+.hero-animate-delay-1 { animation-delay: 0.3s; }
+.hero-animate-delay-2 { animation-delay: 0.6s; }
+.hero-animate-delay-3 { animation-delay: 0.9s; }
+
+/* Scroll Animations */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(60px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  0% { opacity: 0; transform: translateX(-60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  0% { opacity: 0; transform: translateX(60px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.scroll-animate {
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.scroll-animate.visible {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.scroll-animate-left.visible {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.scroll-animate-right.visible {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.scroll-animate-scale.visible {
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+/* Stagger delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Button Hover Effects */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(107, 29, 58, 0.3);
+}
+
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  color: var(--color-maroon);
+  border: 2px solid var(--color-maroon);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary span,
+.btn-secondary svg {
+  position: relative;
+  z-index: 2;
+  color: inherit;
+}
+
+.btn-secondary:hover {
+  background: var(--color-maroon);
+  color: #ffffff !important;
+}
+
+/* Ensure child text/icons also become white even if inline styles exist */
+.btn-secondary:hover span,
+.btn-secondary:hover svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Card Hover Effects */
+.service-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px rgba(74, 55, 40, 0.15);
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.service-icon {
+  transition: transform 0.4s ease;
+}
+
+/* Gallery Hover */
+.gallery-item {
+  transition: all 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 40px rgba(107, 29, 58, 0.2);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-overlay {
+  transition: opacity 0.4s ease;
+}
+
+/* Gallery image rules */
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item .caption {
+  font-weight: 600;
+}
+
+/* Lightbox */
+.lightbox {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-content {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+  transform: scale(1);
+}
+
+/* Testimonial Slider */
+.testimonial-slide {
+  transition: all 0.5s ease;
+}
+
+/* Floating WhatsApp */
+.whatsapp-float {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Parallax Effect */
+.parallax-bg {
+  transition: transform 0.1s linear;
+}
+
+/* Click / Tap micro-interactions */
+@keyframes clickZoom {
+  0% { transform: scale(1); opacity: 1; }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+.click-zoom {
+  animation: clickZoom 320ms ease-out both;
+}
+
+/* Ripple for buttons */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background: rgba(255,255,255,0.25);
+  animation: rippleAnim 600ms ease-out;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+@keyframes rippleAnim {
+  to { transform: scale(6); opacity: 0; }
+}
+
+/* Tilt effect when clicking cards */
+.tilt-click {
+  transition: transform 260ms ease-out;
+  transform-origin: center center;
+}
+
+.tilt-click:active {
+  transform: perspective(600px) rotateX(6deg) rotateY(-6deg) scale(0.995);
+}
+
+/* Footer floating mehndi decoration */
+@keyframes floatMehndi {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes slowSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.footer-mehndi {
+  position: fixed;
+  left: 1.25rem;
+  bottom: 4.5rem;
+  width: 140px;
+  height: 140px;
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.95;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 10px 20px rgba(74,55,40,0.12));
+  animation: floatMehndi 6s ease-in-out infinite;
+}
+
+.footer-mehndi .mehndi-inner {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: center center;
+  animation: slowSpin 28s linear infinite;
+  opacity: 0.95;
+  mix-blend-mode: multiply;
+}
+
+/* Smaller screens: scale down and reduce motion */
+@media (max-width: 640px) {
+  .footer-mehndi { width: 96px; height: 96px; left: 0.75rem; bottom: 3.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-mehndi, .footer-mehndi .mehndi-inner, .ripple, .click-zoom { animation: none !important; transition: none !important; }
+}
+
+/* Ensure responsive images and elements remain fluid */
+img { max-width: 100%; height: auto; }
+.lightbox-content img { width: 100%; height: auto; }
+
+/* Decorative Elements */
+.mehndi-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5C30 5 35 15 45 15C45 15 35 20 35 30C35 30 45 25 55 30C55 30 45 35 45 45C45 45 35 35 30 35C30 35 25 45 15 45C15 45 25 35 25 30C25 30 15 35 5 30C5 30 15 25 15 15C15 15 25 5 30 5Z' stroke='%23C9A962' stroke-width='0.5' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+}
+
+/* Header scroll effect */
+.header-scrolled {
+  background: rgba(253, 248, 243, 0.98);
+  box-shadow: 0 4px 20px rgba(74, 55, 40, 0.1);
+}
+
+/* Star rating */
+.star-filled {
+  color: #C9A962;
+}
+
+/* Extra: smooth theme transitions */
+:root, body, header, section, footer, .service-card, .btn-primary, .btn-secondary {
+  transition: background-color 280ms ease, color 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+}
